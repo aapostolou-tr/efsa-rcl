@@ -298,7 +298,9 @@ public class PropertiesReader {
 	 */
 	public static String getDataCollectionTable() throws FormulaException {
 		Report report = GlobalManager.getInstance().getOpenedReport();
-		String dcCode = getDataCollectionCode(report.getYear());
+		// if no report is open, it is used for proxy tests
+		String reportYear = report != null ? report.getYear() : "2010";
+		String dcCode = getDataCollectionCode(reportYear);
 		User user = User.getInstance();
 
 		try {
